@@ -62,8 +62,9 @@ def render_game(game_string: list):
         pygame.display.flip()
         if move[0] == "A":
             direction = translate_direction(move[3])
-            board[move[0], move[1]] = 2
+            board[move[1], move[2]] = 2
             board[snake_positions[0][0] + direction[0], snake_positions[0][1] + direction[1]] = 1
+            snake_positions.appendleft((snake_positions[0][0] + direction[0], snake_positions[0][1] + direction[1]))
             continue
 
         direction = translate_direction(move)
@@ -71,7 +72,7 @@ def render_game(game_string: list):
         board[snake_positions[0][0], snake_positions[0][1]] = 1
         taily, tailx = snake_positions.pop()
         board[taily, tailx] = 0
-        time.sleep(0.1)
+        time.sleep(0.2)
 
     render_board(screen, board)
     pygame.display.flip()
@@ -82,4 +83,4 @@ def render_game(game_string: list):
 if __name__ == "__main__":
     print("Ran from gameRender.py")
 
-    render_game()
+    render_game([1, 1, [5, (1, 1), (1, 2), "R", ("A", 3, 3, "R"), "R", "R"]])

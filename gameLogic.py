@@ -1,5 +1,4 @@
 import itertools
-import random
 
 from neuralNetwork import *
 from collections import deque
@@ -142,7 +141,6 @@ if __name__ == "__main__":
     print("Ran from gameLogic.py")
 
     layer1, layer2 = read_agent("agent1")
-    randomize_agent(layer1, layer2)
 
     nn1 = NeuralNetwork(layer1, layer2)
 

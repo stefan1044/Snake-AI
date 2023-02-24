@@ -38,8 +38,7 @@ class NeuralNetwork:
         # print("bias_list is:")
         # print(bias_list)
         activation_list = [a + b for a, b in zip(temp_list, bias_list)]
-        # print("activation_list is: ")
-        # print(activation_list)
+        # print(f"activation list is:\n{activation_list}")
 
         max_output = ("U", -1000000)
         for i, a in zip(["U", "D", "L", "R"], activation_list):
@@ -55,18 +54,16 @@ class NeuralNetwork:
         for i, a in zip(self.input_layer, activations):
             i.activation = a
 
+    def randomize_network(self):
+        self.input_layer = [Node([0 for _ in range(15)], 0) for _ in range(19)]
+        self.hidden_layer = [Node([0 for _ in range(4)], 0) for _ in range(15)]
+        for node in self.input_layer:
+            node.init_random()
+        for node in self.hidden_layer:
+            node.init_random()
+
 
 if __name__ == "__main__":
     print("Ran from neuralNetwork.py")
 
     layer1, layer2 = read_agent("agent1")
-    randomize_agent(layer1, layer2)
-
-    nn1 = NeuralNetwork(layer1, layer2)
-    nn1.set_activation([rng.random() for _ in range(19)])
-
-    nn1.calculate_move()
-
-    print("Output layer is:")
-    for n in nn1.output_layer:
-        print(n.activation)

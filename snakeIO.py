@@ -25,11 +25,20 @@ def read_agent(name):
     return input_layer, hidden_layer
 
 
-def randomize_agent(input_layer, hidden_layer):
-    for n in input_layer:
-        n.init_random()
-    for n in hidden_layer:
-        n.init_random()
+def update_agent(name, input_layer, hidden_layer):
+    r = open("agents/" + name + ".txt", "w")
+
+    for node in input_layer:
+        for weight in node.weights:
+            r.write(str(weight) + "\n")
+        r.write(str(node.bias) + "\n")
+
+    for node in hidden_layer:
+        for weight in node.weights:
+            r.write(str(weight) + "\n")
+        r.write(str(node.bias) + "\n")
+
+    r.close()
 
 
 if __name__ == "__main__":
@@ -37,11 +46,9 @@ if __name__ == "__main__":
 
     test1, test2 = read_agent("agent1")
 
-    randomize_agent(test1, test2)
+    for nr in test1:
+        print(str(nr.weights) + str(nr.bias))
 
-    for n in test1:
-        print(str(n.weights) + str(n.bias))
-
-    for n in test2:
-        print(str(n.weights) + str(n.bias))
+    for nr in test2:
+        print(str(nr.weights) + str(nr.bias))
 
