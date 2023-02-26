@@ -134,7 +134,7 @@ def run_game(game_settings, agent: NeuralNetwork):
         moves_since_apple += 1
         moves_total += 1
 
-    return snake_length, moves_total - 1, move_string
+    return snake_length, moves_total, move_string
 
 
 if __name__ == "__main__":

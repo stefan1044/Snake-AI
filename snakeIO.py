@@ -25,6 +25,21 @@ def read_agent(name):
     return input_layer, hidden_layer
 
 
+def read_agent_layers(name):
+    r = open("agents/" + name + ".txt", "r")
+
+    float_list = []
+    for line in r.readlines():
+        float_list.append(float(line))
+
+    r.close()
+
+    input_layer = float_list[:304]
+    hidden_layer = float_list[304:]
+
+    return input_layer, hidden_layer
+
+
 def update_agent(name, input_layer, hidden_layer):
     r = open("agents/" + name + ".txt", "w")
 

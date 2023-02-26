@@ -13,8 +13,8 @@ from snakeIO import *
 
 
 class NeuralNetwork:
-    input_layer = []
-    hidden_layer = []
+    input_layer: list[Node] = []
+    hidden_layer: list[Node] = []
     output_layer = []
 
     def __init__(self, input_layer, hidden_layer):
@@ -61,6 +61,19 @@ class NeuralNetwork:
             node.init_random()
         for node in self.hidden_layer:
             node.init_random()
+
+    def to_list(self) -> list:
+        value_list = []
+        for n in self.input_layer:
+            for v in n.weights:
+                value_list.append(v)
+            value_list.append(n.bias)
+        for n in self.hidden_layer:
+            for v in n.weights:
+                value_list.append(v)
+            value_list.append(n.bias)
+
+        return value_list
 
 
 if __name__ == "__main__":
