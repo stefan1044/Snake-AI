@@ -5,7 +5,7 @@ def chunker(seq, size):
     return (seq[pos:pos + size] for pos in range(0, len(seq), size))
 
 
-def read_agent(name):
+def read_agent(name: str) -> (list[Node], list[Node]):
     r = open("agents/" + name + ".txt", "r")
 
     float_list = []
@@ -25,7 +25,7 @@ def read_agent(name):
     return input_layer, hidden_layer
 
 
-def read_agent_layers(name):
+def read_agent_layers(name: str) -> (list[float], list[float]):
     r = open("agents/" + name + ".txt", "r")
 
     float_list = []
@@ -40,7 +40,7 @@ def read_agent_layers(name):
     return input_layer, hidden_layer
 
 
-def update_agent(name, input_layer, hidden_layer):
+def update_agent(name: str, input_layer: list[Node], hidden_layer: list[Node]):
     r = open("agents/" + name + ".txt", "w")
 
     for node in input_layer:
@@ -56,14 +56,14 @@ def update_agent(name, input_layer, hidden_layer):
     r.close()
 
 
+def copy_over_agents():
+    for i in range(51):
+        n1, n2 = read_agent("genetic" + str(i) + "agent")
+        update_agent("agent" + str(i), n1, n2)
+
+
 if __name__ == "__main__":
     print("Ran from snakeIO.py")
 
-    test1, test2 = read_agent("agent1")
-
-    for nr in test1:
-        print(str(nr.weights) + str(nr.bias))
-
-    for nr in test2:
-        print(str(nr.weights) + str(nr.bias))
+    copy_over_agents()
 

@@ -83,4 +83,4 @@ def render_game(game_string: list):
 if __name__ == "__main__":
     print("Ran from gameRender.py")
 
-    render_game([1, 1, [5, (1, 1), (1, 2), "R", ("A", 3, 3, "R"), "R", "R"]])
+    render_game([1, 1, [5, (4, 1), (4, 4), "R", "R", ('A', 1, 5, 'R'), "R", "R"]])

@@ -76,6 +76,23 @@ class NeuralNetwork:
         return value_list
 
 
+def to_layers(values: list[list]):
+    return_values = []
+
+    for value in values:
+        input_layer = []
+        for group in chunker(value[:304], 16):
+            input_layer.append(Node(group[:15], group[15]))
+
+        hidden_layer = []
+        for group in chunker(value[304:], 5):
+            hidden_layer.append(Node(group[:4], group[4]))
+
+        return_values.append((input_layer, hidden_layer))
+
+    return return_values
+
+
 if __name__ == "__main__":
     print("Ran from neuralNetwork.py")
 
