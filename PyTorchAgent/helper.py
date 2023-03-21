@@ -2,7 +2,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from IPython import display
 
-mpl.use('TkAgg')  # !IMPORTANT
+mpl.use('TkAgg') 
 
 plt.ion()
 
